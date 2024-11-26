@@ -1,37 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 import Daniel from "./images/Daniel.jpg";
 import Laura from "./images/Laura.jpg";
 
 export default function Home() {
-  const conceptionDate: any = new Date("2024-10-18"); // Set conception date
+  const conceptionDate = new Date("2024-10-18"); // Set conception date
   const pregnancyDuration = 280; // Duration in days (40 weeks)
 
-  const [currentDays, setCurrentDays] = useState(0);
-  const [weeks, setWeeks] = useState(0);
-  const [daysLeft, setDaysLeft] = useState(0);
-
-  useEffect(() => {
-    const calculatePregnancy = () => {
-      const now: any = new Date();
-      const timeDiff = now - conceptionDate;
-      const daysPregnant = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-      const weeksPregnant = Math.floor(daysPregnant / 7);
-      const daysToBirth = pregnancyDuration - daysPregnant;
-
-      setCurrentDays(daysPregnant);
-      setWeeks(weeksPregnant);
-      setDaysLeft(daysToBirth);
-    };
-
-    calculatePregnancy();
-    const interval = setInterval(calculatePregnancy, 1000 * 60 * 60 * 24); // Update daily
-
-    return () => clearInterval(interval); // Cleanup
-  }, []);
+  const now = new Date();
+  const timeDiff = now - conceptionDate;
+  const daysPregnant = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const weeksPregnant = Math.floor(daysPregnant / 7);
+  const daysToBirth = pregnancyDuration - daysPregnant;
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center gap-y-10 p-[20px] text-center bg-[#f9f9f9]">
@@ -62,11 +44,11 @@ export default function Home() {
         <p>
           Pregnant for:{" "}
           <strong>
-            {weeks} weeks and {currentDays % 7} days
+            {weeksPregnant} weeks and {daysPregnant % 7} days
           </strong>
         </p>
         <p>
-          Days to Estimated Delivery: <strong>{daysLeft} days</strong>
+          Days to Estimated Delivery: <strong>{daysToBirth} days</strong>
         </p>
       </div>
     </div>
