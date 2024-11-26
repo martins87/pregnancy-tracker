@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-white p-[20px] rounded-[10px] inline-block text-left -mt-24 z-10 border border-gray-200 font-[family-name:var(--font-geist-mono)]">
+      <div className="bg-white p-[20px] rounded-[10px] inline-block text-left text-black -mt-24 z-10 border border-gray-200 font-[family-name:var(--font-geist-mono)]">
         <p>Conception Date: {conceptionDate.toDateString()}</p>
         <p>
           Pregnant for:{" "}
